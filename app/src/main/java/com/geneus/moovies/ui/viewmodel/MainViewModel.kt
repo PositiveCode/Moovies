@@ -1,4 +1,4 @@
-package com.geneus.moovies.view.viewmodel
+package com.geneus.moovies.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

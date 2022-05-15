@@ -6,18 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
 
-    <RelativeLayout
+    <TextView
         android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/bottomBar" />
-
-    <me.ibrahimsn.lib.SmoothBottomBar
-        android:id="@+id/bottomBar"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_alignParentBottom="true"
-        app:backgroundColor="@color/purple_700"
-        app:menu="@menu/menu_btm_bar" />
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:text="Upcoming Fragment" />
 
 </RelativeLayout>
