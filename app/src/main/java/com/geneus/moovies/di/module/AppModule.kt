@@ -8,7 +8,6 @@ import com.geneus.moovies.data.api.ApiHelper
 import com.geneus.moovies.data.api.ApiHelperImpl
 import com.geneus.moovies.data.api.ApiService
 import com.geneus.moovies.data.api.exception.ResultCallAdapterFactory
-import com.geneus.moovies.utils.NetworkHelper
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -20,14 +19,11 @@ val appModule = module {
     single { provideOkHttpClient(androidContext()) }
     single { provideRetrofit(get()) }
     single { provideApiService(get()) }
-    single { provideNetworkHelper(androidContext()) }
 
     single<ApiHelper> {
         return@single ApiHelperImpl(get())
     }
 }
-
-private fun provideNetworkHelper(context: Context) = NetworkHelper(context)
 
 private fun provideOkHttpClient(context: Context) = if (BuildConfig.DEBUG) {
     val chuckerInterceptor = ChuckerInterceptor.Builder(context).build()

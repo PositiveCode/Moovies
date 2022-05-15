@@ -2,22 +2,19 @@ package com.geneus.moovies.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.geneus.moovies.data.api.ApiService
-import com.geneus.moovies.utils.NetworkHelper
+import com.geneus.moovies.data.repo.MovieRepo
 import kotlinx.coroutines.launch
 
 class MainViewModel(
-    private val apiService: ApiService,
-    private val networkHelper: NetworkHelper
+    private val repo: MovieRepo
 ) : ViewModel() {
+    init {
 
-    fun getMovieGenre() {
+    }
+
+    fun getGenre(){
         viewModelScope.launch {
-            apiService.getMovieGenre().onSuccess {
-                println("Success")
-            }.onFailure {
-                println("getNowPlayingMovies failed: ${it.message}")
-            }
+            repo.getMovieGenre()
         }
     }
 }
