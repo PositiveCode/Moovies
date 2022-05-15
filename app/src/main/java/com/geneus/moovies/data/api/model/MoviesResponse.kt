@@ -13,7 +13,7 @@ data class MoviesResponse(
     @SerializedName("total_results")
     val totalResults: Int,
     @SerializedName("results")
-    val results: List<Result>,
+    val moviesList: List<Movie>,
 )
 
 data class Dates(
@@ -23,33 +23,33 @@ data class Dates(
     val minimum: String,
 )
 
-data class Result(
+data class Movie(
     @SerializedName("adult")
-    val adult: Boolean,
+    val adult: Boolean?,
     @SerializedName("backdrop_path")
-    val backdropPath: String,
+    val backdropPath: String?,
     @SerializedName("genre_ids")
-    val genreIds: List<Int>,
+    val genreIds: List<Int>?,
     @SerializedName("id")
-    val id: BigDecimal,
+    val id: BigDecimal?,
     @SerializedName("original_language")
-    val originalLanguage: String,
+    val originalLanguage: String?,
     @SerializedName("original_title")
-    val originalTitle: String,
+    val originalTitle: String?,
     @SerializedName("overview")
-    val overview: String,
+    val overview: String?,
     @SerializedName("popularity")
-    val popularity: BigDecimal,
+    val popularity: BigDecimal?,
     @SerializedName("poster_path")
-    val posterPath: String,
+    val posterPath: String?,
     @SerializedName("release_date")
-    val releaseDate: String,
+    val releaseDate: String?,
     @SerializedName("title")
-    val title: String,
+    val title: String?,
     @SerializedName("video")
-    val video: Boolean,
+    val video: Boolean?,
     @SerializedName("vote_average")
-    val voteAverage: BigDecimal,
+    val voteAverage: BigDecimal?,
     @SerializedName("vote_count")
-    val voteCount: BigDecimal
+    val voteCount: BigDecimal?
 )

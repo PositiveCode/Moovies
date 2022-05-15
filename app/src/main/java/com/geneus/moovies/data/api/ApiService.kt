@@ -15,4 +15,10 @@ interface ApiService {
     @GET("movie/popular?api_key=0e7274f05c36db12cbe71d9ab0393d47")
     suspend fun getPopularMovies(@Query("page") page: Int): Result<MoviesResponse>
 
+    @GET("movie/top_rated?api_key=0e7274f05c36db12cbe71d9ab0393d47")
+    suspend fun getTopRatedMovies(@Query("page") page: Int): Result<MoviesResponse>
+
+    @GET("movie/upcoming?api_key=0e7274f05c36db12cbe71d9ab0393d47")
+    suspend fun getUpcomingMovies(@Query("page") page: Int): Result<MoviesResponse>
+
 }

@@ -6,8 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.geneus.moovies.R
+import com.geneus.moovies.ui.viewmodel.UpcomingViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class UpcomingFragment  : Fragment() {
+class UpcomingFragment : Fragment() {
+    private val vm: UpcomingViewModel by viewModel()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -17,5 +21,6 @@ class UpcomingFragment  : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        vm.getUpcomingMovies()
     }
 }

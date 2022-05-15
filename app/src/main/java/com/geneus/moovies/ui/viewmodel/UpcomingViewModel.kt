@@ -5,13 +5,13 @@ import androidx.lifecycle.viewModelScope
 import com.geneus.moovies.data.repo.MovieRepo
 import kotlinx.coroutines.launch
 
-class NowPlayingViewModel(
+class UpcomingViewModel(
     private val repo: MovieRepo
 ) : ViewModel() {
 
-    fun getNowPlayingMovies() {
+    fun getUpcomingMovies() {
         viewModelScope.launch {
-            repo.getMoviesBySource(MovieRepo.Category.NOW_PLAYING)
+            repo.getMoviesBySource(MovieRepo.Category.UPCOMING)
         }
     }
 }
