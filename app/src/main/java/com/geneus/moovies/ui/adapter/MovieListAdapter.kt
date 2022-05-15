@@ -4,9 +4,12 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.geneus.moovies.R
 import com.geneus.moovies.data.api.model.Movie
 
@@ -31,10 +34,21 @@ class MovieListAdapter(
                 movieList[position]
             )
         }
+
+        Glide.with(context)
+            .load("https://image.tmdb.org/t/p/original${movieList[position].backdropPath}")
+            .centerCrop()
+            .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+            .placeholder(R.drawable.ic_img_default_placeholder)
+            .into(holder.ivMoviePoster)
     }
 
     override fun getItemCount(): Int {
         return movieList.size
+    }
+
+    fun setItems(newMovieList: ArrayList<Movie>) {
+        movieList = newMovieList
     }
 
     class ViewHolder internal constructor(
@@ -42,9 +56,8 @@ class MovieListAdapter(
     ) : RecyclerView.ViewHolder(itemView) {
         var tvMovieTitle: TextView = itemView.findViewById(R.id.tvMovieTitle)
         var rlContainer: RelativeLayout = itemView.findViewById(R.id.rlContainer)
+        var ivMoviePoster: ImageView = itemView.findViewById(R.id.ivMoviePoster)
     }
 
-    fun setItems(newMovieList: ArrayList<Movie>) {
-        movieList = newMovieList
-    }
+
 }
