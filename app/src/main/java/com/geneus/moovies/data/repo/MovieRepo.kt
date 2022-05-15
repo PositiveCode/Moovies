@@ -23,7 +23,7 @@ class MovieRepo(
         return genreDao.getAllGenre()
     }
 
-    suspend fun getMoviesBySource(category: Category): Resource<List<Movie>> {
+    suspend fun getMoviesByCategory(category: Category): Resource<List<Movie>> {
         /**
          * ApiSource is base on the fragment:
          * - NOW_PLAYING

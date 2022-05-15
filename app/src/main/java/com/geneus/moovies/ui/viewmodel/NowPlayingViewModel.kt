@@ -11,7 +11,7 @@ class NowPlayingViewModel(
 
     fun getNowPlayingMovies() {
         viewModelScope.launch {
-            repo.getMoviesBySource(MovieRepo.Category.NOW_PLAYING)
+            repo.getMoviesByCategory(MovieRepo.Category.NOW_PLAYING)
         }
     }
 }

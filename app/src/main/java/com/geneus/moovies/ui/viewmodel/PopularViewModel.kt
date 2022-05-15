@@ -11,7 +11,7 @@ class PopularViewModel(
 
     fun getPopularMovies() {
         viewModelScope.launch {
-            repo.getMoviesBySource(MovieRepo.Category.POPULAR)
+            repo.getMoviesByCategory(MovieRepo.Category.POPULAR)
         }
     }
 }

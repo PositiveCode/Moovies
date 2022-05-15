@@ -11,7 +11,7 @@ class TopRatedViewModel(
 
     fun getTopRatedMovies() {
         viewModelScope.launch {
-            repo.getMoviesBySource(MovieRepo.Category.TOP_RATED)
+            repo.getMoviesByCategory(MovieRepo.Category.TOP_RATED)
         }
     }
 }

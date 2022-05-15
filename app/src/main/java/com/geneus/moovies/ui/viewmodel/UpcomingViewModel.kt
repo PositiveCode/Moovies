@@ -11,7 +11,7 @@ class UpcomingViewModel(
 
     fun getUpcomingMovies() {
         viewModelScope.launch {
-            repo.getMoviesBySource(MovieRepo.Category.UPCOMING)
+            repo.getMoviesByCategory(MovieRepo.Category.UPCOMING)
         }
     }
 }
