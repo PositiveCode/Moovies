@@ -18,5 +18,5 @@
         android:drawablePadding="4dp"
         android:paddingStart="4dp"
         android:paddingEnd="4dp"
-        android:textSize="12sp" />
+        android:textSize="16sp" />
 </LinearLayout>

@@ -14,14 +14,15 @@ class NowPlayingViewModel(
 ) : ViewModel() {
 
     private val _movieList =
-        MutableLiveData<Resource<List<Movie>>>()
-    val movieList: LiveData<Resource<List<Movie>>>
+        MutableLiveData<Resource<ArrayList<Movie>>>()
+    val movieList: LiveData<Resource<ArrayList<Movie>>>
         get() = _movieList
+    private var page = 1
 
     fun getNowPlayingMovies() {
         viewModelScope.launch {
             _movieList.postValue(Resource.loading(null))
-            _movieList.postValue(repo.getMoviesByCategory(MovieRepo.Category.NOW_PLAYING))
+            _movieList.postValue(repo.getMoviesByCategory(MovieRepo.Category.NOW_PLAYING, page++))
         }
     }
 }

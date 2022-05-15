@@ -13,7 +13,7 @@ data class MoviesResponse(
     @SerializedName("total_results")
     val totalResults: Int,
     @SerializedName("results")
-    val moviesList: List<Movie>,
+    val moviesList: ArrayList<Movie>,
 )
 
 data class Dates(

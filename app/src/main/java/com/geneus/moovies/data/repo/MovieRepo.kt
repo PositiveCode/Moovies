@@ -23,9 +23,9 @@ class MovieRepo(
         return genreDao.getAllGenre()
     }
 
-    suspend fun getMoviesByCategory(category: Category): Resource<List<Movie>> {
+    suspend fun getMoviesByCategory(category: Category, page: Int = 1): Resource<ArrayList<Movie>> {
         /**
-         * ApiSource is base on the fragment:
+         * Category base on fragment:
          * - NOW_PLAYING
          * - POPULAR
          * - SEARCH
@@ -33,13 +33,13 @@ class MovieRepo(
          * - UPCOMING
          * */
         when (category) {
-            Category.NOW_PLAYING -> apiHelper.getNowPlayingMovies()
-            Category.POPULAR -> apiHelper.getPopularMovies()
-            Category.TOP_RATED -> apiHelper.getTopRatedMovies()
-            Category.UPCOMING -> apiHelper.getUpcomingMovies()
+            Category.NOW_PLAYING -> apiHelper.getNowPlayingMovies(page)
+            Category.POPULAR -> apiHelper.getPopularMovies(page)
+            Category.TOP_RATED -> apiHelper.getTopRatedMovies(page)
+            Category.UPCOMING -> apiHelper.getUpcomingMovies(page)
         }.onSuccess {
             /**
-             * Returns a resource with success status
+             * Returns a resource with success status.
              * */
             return Resource.success(it.moviesList)
         }.onFailure {
