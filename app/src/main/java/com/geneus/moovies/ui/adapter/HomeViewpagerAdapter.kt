@@ -24,13 +24,6 @@ class HomeViewpagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) 
         return fragmentProperties[position].fragment
     }
 
-    companion object {
-        const val POSITION_FRAGMENT_NOW_PLAYING = 0
-        const val POSITION_FRAGMENT_POPULAR = 1
-        const val POSITION_FRAGMENT_TOPRATED = 2
-        const val POSITION_FRAGMENT_UPCOMING = 3
-    }
-
     data class TabProperty(
         val fragment: Fragment,
         val title: String,
