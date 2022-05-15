@@ -7,15 +7,19 @@ import com.geneus.moovies.ui.fragments.NowPlayingFragment
 import com.geneus.moovies.ui.fragments.PopularFragment
 import com.geneus.moovies.ui.fragments.TopRatedFragment
 import com.geneus.moovies.ui.fragments.UpcomingFragment
+import com.geneus.moovies.ui.viewmodel.MainViewModel
 import me.ibrahimsn.lib.SmoothBottomBar
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
+    private val vm: MainViewModel by viewModel()
     private val bottomNavBar by lazy { findViewById<SmoothBottomBar>(R.id.bottomBar) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        vm.getMovieGenre()
         /**
          * set default fragment
          * */
@@ -88,5 +92,6 @@ class MainActivity : AppCompatActivity() {
         const val FRAGMENT_POPULAR_TAG = "FRAGMENT_POPULAR"
         const val FRAGMENT_TOP_RATED_TAG = "FRAGMENT_TOP_RATED"
         const val FRAGMENT_UPCOMING_TAG = "FRAGMENT_UPCOMING"
+        const val FRAGMENT_SEARCH = "FRAGMENT_SEARCH"
     }
 }

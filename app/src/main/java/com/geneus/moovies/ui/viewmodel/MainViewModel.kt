@@ -11,9 +11,9 @@ class MainViewModel(
     private val networkHelper: NetworkHelper
 ) : ViewModel() {
 
-    fun getNowPlayingMovies(page: Int = 1) {
+    fun getMovieGenre() {
         viewModelScope.launch {
-            apiService.getNowPlayingMovies(page).onSuccess {
+            apiService.getMovieGenre().onSuccess {
                 println("Success")
             }.onFailure {
                 println("getNowPlayingMovies failed: ${it.message}")
