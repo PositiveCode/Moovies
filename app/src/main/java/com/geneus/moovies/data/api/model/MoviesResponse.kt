@@ -3,7 +3,7 @@ package com.geneus.moovies.data.api.model
 import com.google.gson.annotations.SerializedName
 import java.math.BigDecimal
 
-data class NowPlayingMoviesResponse(
+data class MoviesResponse(
     @SerializedName("dates")
     val dates: Dates,
     @SerializedName("page")
