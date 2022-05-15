@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="160dp"
+    android:layout_height="300dp"
     android:layout_marginStart="4dp"
     android:layout_marginTop="4dp"
     android:layout_marginEnd="4dp"
@@ -26,13 +26,68 @@
             android:id="@+id/tvMovieTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_above="@+id/tvGenre"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="#99000000"
+            android:padding="4dp"
+            android:text="Movie Title"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvGenre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/tvReleaseDate"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="#99000000"
+            android:padding="4dp"
+            android:text="Movie genre"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvReleaseDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:text="Movie Title"
+            android:background="#99000000"
+            android:padding="4dp"
+            android:text="Movie release date"
             android:textColor="@color/white"
-            android:textSize="24sp" />
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvAvgVote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="16dp"
+            android:layout_toStartOf="@+id/tvVoteCount"
+            android:background="#99000000"
+            android:padding="4dp"
+            android:text="Movie Average vote"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tvVoteCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="#99000000"
+            android:padding="4dp"
+            android:text="Movie vote count"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
 
     </RelativeLayout>
 

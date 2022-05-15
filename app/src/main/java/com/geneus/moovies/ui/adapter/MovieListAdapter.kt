@@ -29,6 +29,10 @@ class MovieListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.tvMovieTitle.text = movieList[position].title
+        holder.tvReleaseDate.text = movieList[position].releaseDate
+        holder.tvAvgVote.text = movieList[position].voteAverage.toString()
+        holder.tvVoteCount.text = "(${movieList[position].voteCount.toString()})"
+
         holder.rlContainer.setOnClickListener {
             onSelect.invoke(
                 movieList[position]
@@ -55,6 +59,10 @@ class MovieListAdapter(
         itemView: View
     ) : RecyclerView.ViewHolder(itemView) {
         var tvMovieTitle: TextView = itemView.findViewById(R.id.tvMovieTitle)
+        var tvGenre: TextView = itemView.findViewById(R.id.tvGenre)
+        var tvReleaseDate: TextView = itemView.findViewById(R.id.tvReleaseDate)
+        var tvAvgVote: TextView = itemView.findViewById(R.id.tvAvgVote)
+        var tvVoteCount: TextView = itemView.findViewById(R.id.tvVoteCount)
         var rlContainer: RelativeLayout = itemView.findViewById(R.id.rlContainer)
         var ivMoviePoster: ImageView = itemView.findViewById(R.id.ivMoviePoster)
     }
