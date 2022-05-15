@@ -3,22 +3,12 @@
 
     <item
         android:id="@+id/btmBarNowPlaying"
-        android:icon="@drawable/ic_now_playing_movies"
-        android:title="@string/now_playing" />
+        android:icon="@drawable/ic_home"
+        android:title="@string/home" />
 
     <item
         android:id="@+id/btmBarPopular"
-        android:icon="@drawable/ic_popular_movies"
-        android:title="@string/popular" />
-
-    <item
-        android:id="@+id/btmBarTopRated"
-        android:icon="@drawable/ic_top_rated_movies"
-        android:title="@string/top_rated" />
-
-    <item
-        android:id="@+id/btmBarUpcoming"
-        android:icon="@drawable/ic_upcoming_movies"
-        android:title="@string/upcoming" />
+        android:icon="@drawable/ic_favourites"
+        android:title="@string/favourites" />
 
 </menu>

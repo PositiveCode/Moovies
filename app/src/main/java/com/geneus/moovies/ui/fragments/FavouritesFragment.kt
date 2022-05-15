@@ -6,21 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.geneus.moovies.R
-import com.geneus.moovies.ui.viewmodel.NowPlayingViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class NowPlayingFragment : Fragment() {
-    private val vm: NowPlayingViewModel by viewModel()
-
+class FavouritesFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? =
-        inflater.inflate(R.layout.fragment_now_playing, container, false)
+        inflater.inflate(R.layout.fragment_favourites, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        vm.getNowPlayingMovies()
     }
 }

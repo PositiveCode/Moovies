@@ -3,10 +3,8 @@ package com.geneus.moovies.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.geneus.moovies.R
-import com.geneus.moovies.ui.fragments.NowPlayingFragment
+import com.geneus.moovies.ui.fragments.HomeFragment
 import com.geneus.moovies.ui.fragments.PopularFragment
-import com.geneus.moovies.ui.fragments.TopRatedFragment
-import com.geneus.moovies.ui.fragments.UpcomingFragment
 import com.geneus.moovies.ui.viewmodel.MainViewModel
 import me.ibrahimsn.lib.SmoothBottomBar
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -22,21 +20,15 @@ class MainActivity : AppCompatActivity() {
         /**
          * set default fragment
          * */
-        setFragment(FRAGMENT_NOW_PLAYING_TAG)
+        setFragment(FRAGMENT_HOME)
 
         bottomNavBar.onItemSelected = {
             when (it) {
                 0 -> {
-                    setFragment(FRAGMENT_NOW_PLAYING_TAG)
+                    setFragment(FRAGMENT_HOME)
                 }
                 1 -> {
-                    setFragment(FRAGMENT_POPULAR_TAG)
-                }
-                2 -> {
-                    setFragment(FRAGMENT_TOP_RATED_TAG)
-                }
-                3 -> {
-                    setFragment(FRAGMENT_UPCOMING_TAG)
+                    setFragment(FRAGMENT_FAVOURITES)
                 }
             }
         }
@@ -59,17 +51,11 @@ class MainActivity : AppCompatActivity() {
                  * add the fragment to the manager if it doesnt not exist.
                  * */
                 when (fragmentToShowTag) {
-                    FRAGMENT_NOW_PLAYING_TAG -> fragmentTransaction.add(
-                        R.id.container, NowPlayingFragment(), FRAGMENT_NOW_PLAYING_TAG
+                    FRAGMENT_HOME -> fragmentTransaction.add(
+                        R.id.container, HomeFragment(), FRAGMENT_HOME
                     )
-                    FRAGMENT_POPULAR_TAG -> fragmentTransaction.add(
-                        R.id.container, PopularFragment(), FRAGMENT_POPULAR_TAG
-                    )
-                    FRAGMENT_TOP_RATED_TAG -> fragmentTransaction.add(
-                        R.id.container, TopRatedFragment(), FRAGMENT_TOP_RATED_TAG
-                    )
-                    FRAGMENT_UPCOMING_TAG -> fragmentTransaction.add(
-                        R.id.container, UpcomingFragment(), FRAGMENT_UPCOMING_TAG
+                    FRAGMENT_FAVOURITES -> fragmentTransaction.add(
+                        R.id.container, PopularFragment(), FRAGMENT_FAVOURITES
                     )
                 }
             }
@@ -87,10 +73,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object {
-        const val FRAGMENT_NOW_PLAYING_TAG = "FRAGMENT_NOW_PLAYING"
-        const val FRAGMENT_POPULAR_TAG = "FRAGMENT_POPULAR"
-        const val FRAGMENT_TOP_RATED_TAG = "FRAGMENT_TOP_RATED"
-        const val FRAGMENT_UPCOMING_TAG = "FRAGMENT_UPCOMING"
-        const val FRAGMENT_SEARCH = "FRAGMENT_SEARCH"
+        const val FRAGMENT_HOME = "FRAGMENT_HOME"
+        const val FRAGMENT_FAVOURITES = "FRAGMENT_FAVOURITES"
     }
 }

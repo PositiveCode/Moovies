@@ -2,16 +2,17 @@ package com.geneus.moovies.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.geneus.moovies.data.db.model.ApiSource
 import com.geneus.moovies.data.repo.MovieRepo
 import kotlinx.coroutines.launch
 
-class MainViewModel(
+class NowPlayingViewModel(
     private val repo: MovieRepo
 ) : ViewModel() {
 
-    fun getGenre() {
+    fun getNowPlayingMovies() {
         viewModelScope.launch {
-            repo.getMovieGenre()
+            repo.getMoviesBySource(ApiSource.NOW_PLAYING)
         }
     }
 }
