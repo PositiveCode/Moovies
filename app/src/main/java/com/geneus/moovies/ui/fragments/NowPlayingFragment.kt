@@ -83,7 +83,7 @@ class NowPlayingFragment : Fragment() {
 
     private fun openMovieDetail(movie: Movie) {
         context?.startActivity<MovieDetailsActivity> {
-            putExtra(INTENT_KEY_MOVIE_DETAIL_MOVIE_ID, movie.id)
+            putExtra(INTENT_KEY_MOVIE_DETAIL_MOVIE_ID, movie.id?.toInt()?: 0)
         }
     }
 

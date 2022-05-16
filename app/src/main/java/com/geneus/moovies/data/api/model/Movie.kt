@@ -31,5 +31,7 @@ data class Movie(
     @SerializedName("vote_average")
     val voteAverage: BigDecimal?,
     @SerializedName("vote_count")
-    val voteCount: BigDecimal?
+    val voteCount: BigDecimal?,
+    @SerializedName("tagline")
+    val tagline: String?
 )

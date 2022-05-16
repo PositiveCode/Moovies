@@ -54,6 +54,16 @@ class MovieRepo(
         return Resource.loading(null)
     }
 
+    suspend fun getMovieById(movieId: Int): Resource<Movie> {
+        apiHelper.getMovieById(movieId.toInt()).onSuccess {
+            return Resource.success(it)
+        }.onFailure {
+            return Resource.error(it.message ?: "Network issue detected.", null)
+        }
+
+        return Resource.loading(null)
+    }
+
     private suspend fun addGenre(genre: com.geneus.moovies.data.api.model.Genre) {
         /**
          * Convert genre from api to genre for db
