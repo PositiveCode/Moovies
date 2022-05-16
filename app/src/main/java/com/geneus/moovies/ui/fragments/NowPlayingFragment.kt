@@ -10,9 +10,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.geneus.moovies.R
 import com.geneus.moovies.data.api.model.Movie
+import com.geneus.moovies.ui.MovieDetailsActivity
 import com.geneus.moovies.ui.adapter.MovieListAdapter
 import com.geneus.moovies.ui.viewmodel.NowPlayingViewModel
 import com.geneus.moovies.utils.Status
+import com.geneus.moovies.utils.startActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class NowPlayingFragment : Fragment() {
@@ -79,7 +81,7 @@ class NowPlayingFragment : Fragment() {
     }
 
     private fun openMovieDetail(movie: Movie) {
-        Toast.makeText(context, "movie clicked: ${movie.title}", Toast.LENGTH_LONG).show()
+        context?.startActivity<MovieDetailsActivity> { }
     }
 
     private fun setRecyclerView(moviesList: ArrayList<Movie>) {
