@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.geneus.moovies.R
 import com.geneus.moovies.data.api.model.Movie
 import com.geneus.moovies.ui.MovieDetailsActivity
+import com.geneus.moovies.ui.MovieDetailsActivity.Companion.INTENT_KEY_MOVIE_DETAIL_MOVIE_ID
 import com.geneus.moovies.ui.adapter.MovieListAdapter
 import com.geneus.moovies.ui.viewmodel.NowPlayingViewModel
 import com.geneus.moovies.utils.Status
@@ -81,7 +82,9 @@ class NowPlayingFragment : Fragment() {
     }
 
     private fun openMovieDetail(movie: Movie) {
-        context?.startActivity<MovieDetailsActivity> { }
+        context?.startActivity<MovieDetailsActivity> {
+            putExtra(INTENT_KEY_MOVIE_DETAIL_MOVIE_ID, movie.id)
+        }
     }
 
     private fun setRecyclerView(moviesList: ArrayList<Movie>) {
