@@ -51,10 +51,13 @@ class MovieDetailsActivity : AppCompatActivity() {
                         setMovieReleaseDate(movieDetail.releaseDate)
                         setMovieOverview(movieDetail.overview)
                         setMovieRating(movieDetail.voteAverage.toString())
+                        setGenre(vm.getGenreString(movieDetail))
                         setLoadEndViewVisibility()
 
                         ivAddFavourite.setOnClickListener {
-                            Toast.makeText(this, "Movie added to favourite.", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, "Movie added to favourite.", Toast.LENGTH_SHORT)
+                                .show()
+                            vm.addMovieToFav(movie = movieDetail)
                         }
                     }
                 }
@@ -84,34 +87,53 @@ class MovieDetailsActivity : AppCompatActivity() {
     }
 
     private fun setMovieTitle(movieTitle: String?) {
-        if (movieTitle.isNullOrEmpty()) return
+        if (movieTitle.isNullOrEmpty()) {
+            tvTitle.visibility = View.GONE
+            tvMovieTitle.visibility = View.GONE
+        }
 
         tvTitle.text = movieTitle
         tvMovieTitle.text = movieTitle
     }
 
     private fun setMovieTagline(movieTagline: String?) {
-        if (movieTagline.isNullOrEmpty()) return
+        if (movieTagline.isNullOrEmpty()) {
+            tvTagline.visibility = View.GONE
+        }
 
         tvTagline.text = movieTagline
     }
 
     private fun setMovieReleaseDate(releaseDate: String?) {
-        if (releaseDate.isNullOrEmpty()) return
+        if (releaseDate.isNullOrEmpty()) {
+            tvMovieReleaseDate.visibility = View.GONE
+        }
 
         tvMovieReleaseDate.text = releaseDate
     }
 
     private fun setMovieOverview(movieOverview: String?) {
-        if (movieOverview.isNullOrEmpty()) return
+        if (movieOverview.isNullOrEmpty()) {
+            tvOverview.visibility = View.GONE
+        }
 
         tvOverview.text = movieOverview
     }
 
     private fun setMovieRating(movieRating: String?) {
-        if (movieRating.isNullOrEmpty()) return
+        if (movieRating.isNullOrEmpty()) {
+            tvRating.visibility = View.GONE
+        }
 
         tvRating.text = movieRating
+    }
+
+    private fun setGenre(movieGenre: String?) {
+        if (movieGenre.isNullOrEmpty()) {
+            tvMovieGenre.visibility = View.GONE
+        }
+
+        tvMovieGenre.text = movieGenre
     }
 
     private fun setLoadingViewVisibility() {

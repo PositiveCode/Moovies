@@ -3,8 +3,8 @@ package com.geneus.moovies.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.geneus.moovies.R
+import com.geneus.moovies.ui.fragments.FavouritesFragment
 import com.geneus.moovies.ui.fragments.HomeFragment
-import com.geneus.moovies.ui.fragments.PopularFragment
 import com.geneus.moovies.ui.viewmodel.MainViewModel
 import me.ibrahimsn.lib.SmoothBottomBar
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
                         R.id.container, HomeFragment(), FRAGMENT_HOME
                     )
                     FRAGMENT_FAVOURITES -> fragmentTransaction.add(
-                        R.id.container, PopularFragment(), FRAGMENT_FAVOURITES
+                        R.id.container, FavouritesFragment(), FRAGMENT_FAVOURITES
                     )
                 }
             }

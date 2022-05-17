@@ -10,6 +10,8 @@ data class Movie(
     val backdropPath: String?,
     @SerializedName("genre_ids")
     val genreIds: List<Int>?,
+    @SerializedName("genres")
+    val genres: List<com.geneus.moovies.data.api.model.Genre>?,
     @SerializedName("id")
     val id: BigDecimal?,
     @SerializedName("original_language")

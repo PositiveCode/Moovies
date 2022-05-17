@@ -4,32 +4,24 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.geneus.moovies.data.api.model.Movie
+import com.geneus.moovies.data.db.model.MovieModel
 import com.geneus.moovies.data.repo.MovieRepo
 import com.geneus.moovies.utils.Resource
 import kotlinx.coroutines.launch
 
-class MovieDetailsViewModel(
+class FavouriteViewModel(
     private val repo: MovieRepo
 ) : ViewModel() {
     private val _movieDetail =
-        MutableLiveData<Resource<Movie>>()
-    val movieDetail: LiveData<Resource<Movie>>
+        MutableLiveData<Resource<List<MovieModel>>>()
+    val movieDetail: LiveData<Resource<List<MovieModel>>>
         get() = _movieDetail
 
-    fun getMovieById(movieId: Int) {
+    fun getAllFavMovies() {
         viewModelScope.launch {
             _movieDetail.postValue(Resource.loading(null))
-            _movieDetail.postValue(repo.getMovieById(movieId))
+            _movieDetail.postValue(Resource.success(repo.getAllFavMovies()))
         }
     }
-
-    fun addMovieToFav(movie: Movie) {
-        viewModelScope.launch {
-            repo.addMovieToFav(movie)
-        }
-    }
-
-    fun getGenreString(movie: Movie) = repo.getGenreString(movie)
 
 }

@@ -11,4 +11,5 @@ val viewModelModule = module {
     viewModel { TopRatedViewModel(get()) }
     viewModel { UpcomingViewModel(get()) }
     viewModel { MovieDetailsViewModel(get()) }
+    viewModel { FavouriteViewModel(get()) }
 }
