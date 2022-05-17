@@ -33,11 +33,13 @@ class FavouritesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupViews(view)
-
-        vm.getAllFavMovies()
         setupObserver()
     }
 
+    override fun onResume() {
+        super.onResume()
+        vm.getAllFavMovies()
+    }
     private fun setupObserver() {
         vm.movieDetail.observe(viewLifecycleOwner) {
             when (it.status) {

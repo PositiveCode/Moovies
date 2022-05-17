@@ -19,7 +19,6 @@ class FavouriteViewModel(
 
     fun getAllFavMovies() {
         viewModelScope.launch {
-            _movieDetail.postValue(Resource.loading(null))
             _movieDetail.postValue(Resource.success(repo.getAllFavMovies()))
         }
     }
