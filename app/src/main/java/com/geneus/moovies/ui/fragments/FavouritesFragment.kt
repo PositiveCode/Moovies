@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,6 +22,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class FavouritesFragment : Fragment() {
     private val vm: FavouriteViewModel by viewModel()
     private lateinit var rvMoviesList: RecyclerView
+    private lateinit var ivEmpty: ImageView
+    private lateinit var tvEmpty: TextView
 
     private var adapter: FavMovieListAdapter? = null
 
@@ -28,7 +32,7 @@ class FavouritesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? =
-        inflater.inflate(R.layout.fragment_now_playing, container, false)
+        inflater.inflate(R.layout.fragment_favourites, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -40,11 +44,21 @@ class FavouritesFragment : Fragment() {
         super.onResume()
         vm.getAllFavMovies()
     }
+
     private fun setupObserver() {
         vm.movieDetail.observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
                     it.data?.let { moviesList ->
+                        if (moviesList.isEmpty()) {
+                            tvEmpty.visibility = View.VISIBLE
+                            ivEmpty.visibility = View.VISIBLE
+                            rvMoviesList.visibility = View.GONE
+                        } else {
+                            tvEmpty.visibility = View.GONE
+                            ivEmpty.visibility = View.GONE
+                            rvMoviesList.visibility = View.VISIBLE
+                        }
                         setRecyclerView(moviesList)
                     }
                 }
@@ -68,6 +82,8 @@ class FavouritesFragment : Fragment() {
 
     private fun setupViews(view: View) {
         rvMoviesList = view.findViewById(R.id.rvMoviesList)
+        ivEmpty = view.findViewById(R.id.ivEmpty)
+        tvEmpty = view.findViewById(R.id.tvEmpty)
     }
 
     private fun openMovieDetail(movie: MovieModel) {
