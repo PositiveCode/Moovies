@@ -40,13 +40,13 @@
             android:textSize="24sp" />
 
         <ImageView
-            android:layout_gravity="end"
             android:id="@+id/ivAddFavourite"
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:layout_gravity="end"
             android:layout_marginEnd="16dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_add_fav" />
+            android:src="@drawable/ic_fav_not_added" />
     </androidx.appcompat.widget.Toolbar>
 
     <com.google.android.material.card.MaterialCardView

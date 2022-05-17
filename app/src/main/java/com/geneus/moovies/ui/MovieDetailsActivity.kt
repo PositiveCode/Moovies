@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.geneus.moovies.R
+import com.geneus.moovies.data.api.model.Movie
 import com.geneus.moovies.ui.viewmodel.MovieDetailsViewModel
 import com.geneus.moovies.utils.Status
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -52,12 +53,24 @@ class MovieDetailsActivity : AppCompatActivity() {
                         setMovieOverview(movieDetail.overview)
                         setMovieRating(movieDetail.voteAverage.toString())
                         setGenre(vm.getGenreString(movieDetail))
+                        setFavIcon(movieDetail)
                         setLoadEndViewVisibility()
 
                         ivAddFavourite.setOnClickListener {
-                            Toast.makeText(this, "Movie added to favourite.", Toast.LENGTH_SHORT)
-                                .show()
-                            vm.addMovieToFav(movie = movieDetail)
+                            if (vm.isMovieAddedFav(movieDetail.id?.toInt())) {
+                                /**
+                                 * Movie added to fav already - remove it.
+                                 * */
+                                vm.removeMovieFromFav(movieDetail)
+                                Toast.makeText(this, "Movie removed from Favourites.", Toast.LENGTH_SHORT).show()
+                            } else {
+                                /**
+                                 * Movie not added to fave yet = add it
+                                 * */
+                                vm.addMovieToFav(movie = movieDetail)
+                                Toast.makeText(this, "Movie added to Favourites.", Toast.LENGTH_SHORT).show()
+                            }
+                            setFavIcon(movieDetail)
                         }
                     }
                 }
@@ -134,6 +147,21 @@ class MovieDetailsActivity : AppCompatActivity() {
         }
 
         tvMovieGenre.text = movieGenre
+    }
+
+    private fun setFavIcon(movie: Movie) {
+        Glide.with(this)
+            .load(
+                if (vm.isMovieAddedFav(movie.id?.toInt())) {
+                    R.drawable.ic_fav_added
+                } else {
+                    R.drawable.ic_fav_not_added
+                }
+            )
+            .centerCrop()
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .placeholder(R.drawable.ic_img_default_placeholder)
+            .into(ivAddFavourite)
     }
 
     private fun setLoadingViewVisibility() {

@@ -8,6 +8,7 @@ import com.geneus.moovies.data.api.model.Movie
 import com.geneus.moovies.data.repo.MovieRepo
 import com.geneus.moovies.utils.Resource
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class MovieDetailsViewModel(
     private val repo: MovieRepo
@@ -28,6 +29,19 @@ class MovieDetailsViewModel(
         viewModelScope.launch {
             repo.addMovieToFav(movie)
         }
+    }
+
+    fun removeMovieFromFav(movie: Movie) {
+        if (movie.id == null) return
+        viewModelScope.launch {
+            repo.removeFavMovieById(movie.id.toInt())
+        }
+    }
+
+    fun isMovieAddedFav(movieId: Int?): Boolean = runBlocking {
+        if (movieId != null)
+            repo.getFavMovieById(movieId) != null
+        else false
     }
 
     fun getGenreString(movie: Movie) = repo.getGenreString(movie)

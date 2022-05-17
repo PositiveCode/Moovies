@@ -14,6 +14,13 @@ interface FavouriteMoviesDao {
     @Query("DELETE FROM favourite_table")
     suspend fun deleteAll()
 
+    @Query("DELETE FROM favourite_table WHERE id = :id")
+    suspend fun deleteFavMovieById(id: Int)
+
     @Query("SELECT * FROM favourite_table")
     suspend fun getAllFavMovies(): List<MovieModel>?
+
+    @Query("SELECT * FROM favourite_table WHERE id = :id")
+    suspend fun getFavMovieById(id: Int): MovieModel?
+
 }

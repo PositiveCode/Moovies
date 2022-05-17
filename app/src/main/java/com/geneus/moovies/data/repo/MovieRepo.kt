@@ -101,6 +101,10 @@ class MovieRepo(
         favouriteMoviesDao.insert(movieModel)
     }
 
+    suspend fun getFavMovieById(id: Int) = favouriteMoviesDao.getFavMovieById(id)
+
+    suspend fun removeFavMovieById(id: Int) = favouriteMoviesDao.deleteFavMovieById(id)
+
     suspend fun getAllFavMovies(): List<MovieModel>? {
         return favouriteMoviesDao.getAllFavMovies()
     }
@@ -111,7 +115,7 @@ class MovieRepo(
         var genresString = ""
 
         for (index in movie.genres.indices) {
-            genresString += if (index != movie.genres.size-1)
+            genresString += if (index != movie.genres.size - 1)
                 movie.genres[index].name + ", "
             else movie.genres[index].name + "."
         }
