@@ -41,6 +41,7 @@ class MovieRepo(
             Category.POPULAR -> apiHelper.getPopularMovies(page)
             Category.TOP_RATED -> apiHelper.getTopRatedMovies(page)
             Category.UPCOMING -> apiHelper.getUpcomingMovies(page)
+            Category.SEARCH -> TODO()
         }.onSuccess {
             /**
              * Returns a resource with success status.
@@ -128,6 +129,7 @@ class MovieRepo(
         NOW_PLAYING,
         POPULAR,
         TOP_RATED,
-        UPCOMING
+        UPCOMING,
+        SEARCH
     }
 }

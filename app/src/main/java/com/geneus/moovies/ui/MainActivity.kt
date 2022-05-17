@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.geneus.moovies.R
 import com.geneus.moovies.ui.fragments.FavouritesFragment
 import com.geneus.moovies.ui.fragments.HomeFragment
+import com.geneus.moovies.ui.fragments.SearchFragment
 import com.geneus.moovies.ui.viewmodel.MainViewModel
 import me.ibrahimsn.lib.SmoothBottomBar
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -28,6 +29,9 @@ class MainActivity : AppCompatActivity() {
                     setFragment(FRAGMENT_HOME)
                 }
                 1 -> {
+                    setFragment(FRAGMENT_SEARCH)
+                }
+                2 -> {
                     setFragment(FRAGMENT_FAVOURITES)
                 }
             }
@@ -57,6 +61,13 @@ class MainActivity : AppCompatActivity() {
                     FRAGMENT_FAVOURITES -> fragmentTransaction.add(
                         R.id.container, FavouritesFragment(), FRAGMENT_FAVOURITES
                     )
+                    FRAGMENT_SEARCH -> {
+                        fragmentTransaction.add(
+                            R.id.container,
+                            SearchFragment(),
+                            FRAGMENT_SEARCH
+                        )
+                    }
                 }
             }
         }
@@ -74,6 +85,7 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         const val FRAGMENT_HOME = "FRAGMENT_HOME"
+        const val FRAGMENT_SEARCH = "FRAGMENT_SEARCH"
         const val FRAGMENT_FAVOURITES = "FRAGMENT_FAVOURITES"
     }
 }

@@ -26,4 +26,6 @@ interface ApiService {
     @GET("movie/{movieId}?api_key=0e7274f05c36db12cbe71d9ab0393d47")
     suspend fun getMovieById(@Path("movieId") movieId: Int): Result<Movie>
 
+    @GET("search/movie?query={query}&page=1&api_key=0e7274f05c36db12cbe71d9ab0393d47")
+    suspend fun getMoviesByQuery(@Path("query") movieId: Int): Result<MovieListResponse>
 }

@@ -7,6 +7,11 @@
         android:title="@string/home" />
 
     <item
+        android:id="@+id/btmBarSearch"
+        android:icon="@drawable/ic_search"
+        android:title="@string/search" />
+
+    <item
         android:id="@+id/btmBarPopular"
         android:icon="@drawable/ic_favourites"
         android:title="@string/favourites" />
