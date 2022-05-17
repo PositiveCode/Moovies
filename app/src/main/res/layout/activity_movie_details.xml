@@ -112,7 +112,7 @@
     <com.google.android.material.card.MaterialCardView
         style="@style/RoundedTopCardViewStyle"
         android:layout_width="150dp"
-        android:layout_height="70dp"
+        android:layout_height="65dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:padding="8dp"
