@@ -16,6 +16,8 @@ class MovieDetailsActivity : AppCompatActivity() {
     private val icBack by lazy { findViewById<ImageButton>(R.id.icBack) }
 
     private val ivMoviePoster by lazy { findViewById<ImageView>(R.id.ivMoviePoster) }
+    private val ivAddFavourite by lazy { findViewById<ImageView>(R.id.ivAddFavourite) }
+
     private val tvTitle by lazy { findViewById<TextView>(R.id.tvTitle) }
     private val tvMovieTitle by lazy { findViewById<TextView>(R.id.tvMovieTitle) }
     private val tvTagline by lazy { findViewById<TextView>(R.id.tvTagline) }
@@ -50,6 +52,10 @@ class MovieDetailsActivity : AppCompatActivity() {
                         setMovieOverview(movieDetail.overview)
                         setMovieRating(movieDetail.voteAverage.toString())
                         setLoadEndViewVisibility()
+
+                        ivAddFavourite.setOnClickListener {
+                            Toast.makeText(this, "Movie added to favourite.", Toast.LENGTH_SHORT).show()
+                        }
                     }
                 }
                 Status.LOADING -> {
