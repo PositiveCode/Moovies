@@ -10,18 +10,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.geneus.moovies.R
 import com.geneus.moovies.data.api.model.Movie
+import com.geneus.moovies.data.repo.MovieRepo
 import com.geneus.moovies.ui.MovieDetailsActivity
 import com.geneus.moovies.ui.MovieDetailsActivity.Companion.INTENT_KEY_MOVIE_DETAIL_MOVIE_ID
 import com.geneus.moovies.ui.adapter.MovieListAdapter
-import com.geneus.moovies.ui.viewmodel.NowPlayingViewModel
+import com.geneus.moovies.ui.viewmodel.MovieListViewModel
 import com.geneus.moovies.utils.Status
 import com.geneus.moovies.utils.startActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class NowPlayingFragment : Fragment() {
-    private val vm: NowPlayingViewModel by viewModel()
+class MovieListFragment : Fragment() {
+    private val vm: MovieListViewModel by viewModel()
     private lateinit var rvMoviesList: RecyclerView
-
+    var category: String? = "NOW_PLAYING"
     private var adapter: MovieListAdapter? = null
     private var cachedMovieList: ArrayList<Movie> = arrayListOf()
 
@@ -36,7 +37,8 @@ class NowPlayingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupViews(view)
 
-        vm.getNowPlayingMovies()
+        category = arguments?.getString(KEY_MOVIE_CATEGORY)
+        vm.getMovieList(MovieRepo.Category.valueOf(category ?: "NOW_PLAYING"))
         setupObserver()
     }
 
@@ -83,7 +85,7 @@ class NowPlayingFragment : Fragment() {
 
     private fun openMovieDetail(movie: Movie) {
         context?.startActivity<MovieDetailsActivity> {
-            putExtra(INTENT_KEY_MOVIE_DETAIL_MOVIE_ID, movie.id?.toInt()?: 0)
+            putExtra(INTENT_KEY_MOVIE_DETAIL_MOVIE_ID, movie.id?.toInt() ?: 0)
         }
     }
 
@@ -107,10 +109,21 @@ class NowPlayingFragment : Fragment() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 if (!recyclerView.canScrollVertically(1) && newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    vm.getNowPlayingMovies()
+                    vm.getMovieList(MovieRepo.Category.valueOf(category?: "NOW_PLAYING"))
                 }
             }
         })
 
+    }
+
+    companion object {
+        const val KEY_MOVIE_CATEGORY = "KEY_MOVIE_CATEGORY"
+
+        @JvmStatic
+        fun newInstance(movieCategory: MovieRepo.Category) = MovieListFragment().apply {
+            arguments = Bundle().apply {
+                putString(KEY_MOVIE_CATEGORY, movieCategory.name)
+            }
+        }
     }
 }

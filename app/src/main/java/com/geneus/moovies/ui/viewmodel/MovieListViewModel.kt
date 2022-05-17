@@ -9,7 +9,7 @@ import com.geneus.moovies.data.repo.MovieRepo
 import com.geneus.moovies.utils.Resource
 import kotlinx.coroutines.launch
 
-class NowPlayingViewModel(
+class MovieListViewModel(
     private val repo: MovieRepo
 ) : ViewModel() {
 
@@ -19,10 +19,10 @@ class NowPlayingViewModel(
         get() = _movieList
     private var page = 1
 
-    fun getNowPlayingMovies() {
+    fun getMovieList(category: MovieRepo.Category) {
         viewModelScope.launch {
             _movieList.postValue(Resource.loading(null))
-            _movieList.postValue(repo.getMoviesByCategory(MovieRepo.Category.NOW_PLAYING, page++))
+            _movieList.postValue(repo.getMoviesByCategory(category, page++))
         }
     }
 }
