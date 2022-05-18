@@ -33,6 +33,9 @@ class FavMovieListAdapter(
         holder.tvAvgVote.text = movieList[position].voteAverage.toString()
         holder.tvVoteCount.text = "(${movieList[position].voteCount.toString()})"
 
+        val genres = movieList[position].genreIds?.replace("(", "")?.replace(")", "")
+        holder.tvGenre.text = genres
+
         holder.rlContainer.setOnClickListener {
             onSelect.invoke(
                 movieList[position]
