@@ -128,6 +128,7 @@ class SearchFragment : Fragment() {
             MovieListAdapter(
                 requireContext(),
                 moviesList,
+                vm.getLocalGenreList(),
                 this::openMovieDetail
             )
 

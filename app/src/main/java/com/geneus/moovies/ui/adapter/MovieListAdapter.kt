@@ -12,10 +12,12 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.geneus.moovies.R
 import com.geneus.moovies.data.api.model.Movie
+import com.geneus.moovies.data.db.model.Genre
 
 class MovieListAdapter(
     private val context: Context,
     private var movieList: ArrayList<Movie>,
+    private val genreList: List<Genre>?,
     private val onSelect: (movie: Movie) -> Unit
 ) :
     RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
@@ -32,7 +34,7 @@ class MovieListAdapter(
         holder.tvReleaseDate.text = movieList[position].releaseDate
         holder.tvAvgVote.text = movieList[position].voteAverage.toString()
         holder.tvVoteCount.text = "(${movieList[position].voteCount.toString()})"
-
+        setGenre(position, holder)
         holder.rlContainer.setOnClickListener {
             onSelect.invoke(
                 movieList[position]
@@ -49,6 +51,18 @@ class MovieListAdapter(
 
     override fun getItemCount(): Int {
         return movieList.size
+    }
+
+    private fun setGenre(position: Int, holder: ViewHolder) {
+        val genres = arrayListOf<String>()
+        movieList[position].genreIds?.forEach { genreId ->
+            genreList?.forEach {
+                if (genreId == it.id) {
+                    genres.add(it.name ?: "")
+                }
+            }
+        }
+        holder.tvGenre.text = genres.toString().replace("[", "").replace("]", "")
     }
 
     fun setItems(newMovieList: ArrayList<Movie>) {

@@ -25,7 +25,7 @@ class MovieRepo(
         return genreDao.getAllGenre()
     }
 
-    private suspend fun getMovieGenresLocally() = genreDao.getAllGenre()
+    suspend fun getMovieGenresLocally() = genreDao.getAllGenre()
 
     suspend fun getMoviesByCategory(category: Category, page: Int = 1): Resource<ArrayList<Movie>> {
         /**

@@ -97,6 +97,7 @@ class MovieListFragment : Fragment() {
             MovieListAdapter(
                 requireContext(),
                 moviesList,
+                vm.getLocalGenreList(),
                 this::openMovieDetail
             )
 
@@ -109,7 +110,7 @@ class MovieListFragment : Fragment() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 if (!recyclerView.canScrollVertically(1) && newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    vm.getMovieList(MovieRepo.Category.valueOf(category?: "NOW_PLAYING"))
+                    vm.getMovieList(MovieRepo.Category.valueOf(category ?: "NOW_PLAYING"))
                 }
             }
         })
