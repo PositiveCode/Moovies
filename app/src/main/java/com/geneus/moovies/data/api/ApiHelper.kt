@@ -9,6 +9,7 @@ interface ApiHelper {
     suspend fun getPopularMovies(page: Int = 1): Result<MovieListResponse>
     suspend fun getTopRatedMovies(page: Int = 1): Result<MovieListResponse>
     suspend fun getUpcomingMovies(page: Int = 1): Result<MovieListResponse>
+    suspend fun getMoviesByQuery(query: String, page: Int = 1): Result<MovieListResponse>
     suspend fun getMovieById(movieId: Int = 1): Result<Movie>
     suspend fun getMovieGenre(): Result<GenreResponse>
 }

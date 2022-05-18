@@ -32,7 +32,6 @@ class MovieRepo(
          * Category base on fragment:
          * - NOW_PLAYING
          * - POPULAR
-         * - SEARCH
          * - TOP_RATED
          * - UPCOMING
          * */
@@ -40,8 +39,7 @@ class MovieRepo(
             Category.NOW_PLAYING -> apiHelper.getNowPlayingMovies(page)
             Category.POPULAR -> apiHelper.getPopularMovies(page)
             Category.TOP_RATED -> apiHelper.getTopRatedMovies(page)
-            Category.UPCOMING -> apiHelper.getUpcomingMovies(page)
-            Category.SEARCH -> TODO()
+            else -> apiHelper.getUpcomingMovies(page)
         }.onSuccess {
             /**
              * Returns a resource with success status.
@@ -56,6 +54,15 @@ class MovieRepo(
         /**
          * Returns a resource with loading status and null as payload.
          * */
+        return Resource.loading(null)
+    }
+
+    suspend fun getMoviesByQuery(query: String, page: Int): Resource<ArrayList<Movie>> {
+        apiHelper.getMoviesByQuery(query, page).onSuccess {
+            return Resource.success(it.moviesList)
+        }.onFailure {
+            return Resource.error(it.message ?: "Network issue detected.", null)
+        }
         return Resource.loading(null)
     }
 
