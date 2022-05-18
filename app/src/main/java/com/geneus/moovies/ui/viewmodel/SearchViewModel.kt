@@ -19,12 +19,11 @@ class SearchViewModel(
         MutableLiveData<Resource<ArrayList<Movie>>>()
     val movieList: LiveData<Resource<ArrayList<Movie>>>
         get() = _movieList
-    private var page = 1
 
-    fun getSearchedMovie(query: String) {
+    fun getSearchedMovie(query: String, page: Int) {
         viewModelScope.launch {
             _movieList.postValue(Resource.loading(null))
-            _movieList.postValue(repo.getMoviesByQuery(query, page++))
+            _movieList.postValue(repo.getMoviesByQuery(query, page))
         }
     }
 

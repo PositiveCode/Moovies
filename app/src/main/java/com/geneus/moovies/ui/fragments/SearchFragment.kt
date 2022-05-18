@@ -33,6 +33,7 @@ class SearchFragment : Fragment() {
     private lateinit var tvEmpty: TextView
 
     private var searchedQuery = ""
+    private var page = 1
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,8 +59,12 @@ class SearchFragment : Fragment() {
         etSearch.setOnKeyListener(object : View.OnKeyListener {
             override fun onKey(v: View?, keyCode: Int, event: KeyEvent): Boolean {
                 if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+                    /**
+                     * reset the page and query movies.
+                     * */
+                    page = 1
                     searchedQuery = etSearch.text.toString()
-                    vm.getSearchedMovie(searchedQuery)
+                    vm.getSearchedMovie(searchedQuery, page)
                     return true
                 }
                 return false
@@ -86,7 +91,7 @@ class SearchFragment : Fragment() {
                             rvMoviesList.visibility = View.VISIBLE
                         }
 
-                        if (cachedMovieList.isEmpty()) {
+                        if (page == 1) {
                             cachedMovieList = moviesList
                             setRecyclerView(cachedMovieList)
                         } else {
@@ -141,7 +146,8 @@ class SearchFragment : Fragment() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 if (!recyclerView.canScrollVertically(1) && newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    vm.getSearchedMovie(searchedQuery)
+                    val nextPage = ++page
+                    vm.getSearchedMovie(searchedQuery, nextPage)
                 }
             }
         })
