@@ -13,4 +13,21 @@
         android:paddingTop="4dp"
         android:paddingEnd="8dp" />
 
+    <ImageView
+        android:id="@+id/ivEmpty"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_centerInParent="true"
+        android:padding="8dp"
+        android:src="@drawable/ic_loading_moovies" />
+
+    <TextView
+        android:id="@+id/tvEmpty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ivEmpty"
+        android:layout_centerHorizontal="true"
+        android:text="Loading Moovies..."
+        android:textSize="18sp"
+        android:textStyle="bold" />
 </RelativeLayout>
