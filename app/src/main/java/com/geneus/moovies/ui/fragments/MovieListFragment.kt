@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,6 +24,9 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class MovieListFragment : Fragment() {
     private val vm: MovieListViewModel by viewModel()
     private lateinit var rvMoviesList: RecyclerView
+    private lateinit var ivEmpty: ImageView
+    private lateinit var tvEmpty: TextView
+
     var category: String? = "NOW_PLAYING"
     private var adapter: MovieListAdapter? = null
     private var cachedMovieList: ArrayList<Movie> = arrayListOf()
@@ -47,6 +52,16 @@ class MovieListFragment : Fragment() {
             when (it.status) {
                 Status.SUCCESS -> {
                     it.data?.let { moviesList ->
+                        if (moviesList.isEmpty()) {
+                            tvEmpty.visibility = View.VISIBLE
+                            ivEmpty.visibility = View.VISIBLE
+                            rvMoviesList.visibility = View.GONE
+                        } else {
+                            tvEmpty.visibility = View.GONE
+                            ivEmpty.visibility = View.GONE
+                            rvMoviesList.visibility = View.VISIBLE
+                        }
+
                         if (cachedMovieList.isEmpty()) {
                             cachedMovieList = moviesList
                             setRecyclerView(cachedMovieList)
@@ -81,6 +96,8 @@ class MovieListFragment : Fragment() {
 
     private fun setupViews(view: View) {
         rvMoviesList = view.findViewById(R.id.rvMoviesList)
+        ivEmpty = view.findViewById(R.id.ivEmpty)
+        tvEmpty = view.findViewById(R.id.tvEmpty)
     }
 
     private fun openMovieDetail(movie: Movie) {
