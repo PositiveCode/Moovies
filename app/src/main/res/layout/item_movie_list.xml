@@ -62,21 +62,7 @@
             android:textColor="@color/white"
             android:textSize="14sp" />
 
-        <TextView
-            android:id="@+id/tvAvgVote"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="16dp"
-            android:layout_toStartOf="@+id/tvVoteCount"
-            android:background="#99000000"
-            android:padding="4dp"
-            android:text="Movie Average vote"
-            android:textColor="@color/white"
-            android:textSize="12sp" />
-
-        <TextView
-            android:id="@+id/tvVoteCount"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -84,10 +70,35 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:background="#99000000"
-            android:padding="4dp"
-            android:text="Movie vote count"
-            android:textColor="@color/white"
-            android:textSize="12sp" />
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ivAddFavourite"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center_vertical"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_ratings_star" />
+
+            <TextView
+                android:id="@+id/tvAvgVote"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:text="Movie Average vote"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tvVoteCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:text="Movie vote count"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+        </LinearLayout>
+
 
     </RelativeLayout>
 
